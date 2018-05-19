@@ -1,0 +1,37 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<section class="container">
+	<h1>Template driven form</h1>
+	<h3>User Details</h3>
+	<form #userForm="ngForm" #refUserForm (ngSubmit)="submit()">
+		<div class="form-group">
+			<label>Name</label>
+			<input type="text" class="form-control" name="name" [(ngModel)]="name" #refName required minlength="4"/>
+			{{refName.className}}
+		</div>
+		<div class="form-group">
+			<label>Mobile Number</label>
+			<input type="tel" class="form-control" name="contactNumber" [(ngModel)]="contactNumber" #refcontactNumber required pattern="^\d{10}$" />
+			 {{refcontactNumber.className}}
+		</div>
+		<div class="form-group">
+			<label>Email</label>
+			<input type="email" class="form-control" name="email" [(ngModel)]="email" #refEmail required />
+			 {{refEmail.className}}
+		</div>
+		<div class="form-group">
+			<input type="submit" value="Submit" class="btn btn-success" (click)="submit" [disabled]="!refUserForm.valid">
+			<button (click)="reset()" class="btn btn-default">Reset</button>
+		</div>
+	</form>
+	<div>
+		<h4>form content</h4>
+		<p>{{ userForm.value | json }}</p>
+	</div>
+	<div>
+		<h4>form control classes</h4>
+		<p>{{ refUserForm.className }}</p>
+		<p>{{ refUserForm.invalid }}</p>
+	</div>
+	
+</section>
+
